@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import base64
 import os
 from MyQR.mylibs import theqrmodule
 from PIL import Image
+from io import BytesIO
    
 # Positional parameters
 #   words: str
@@ -19,7 +20,7 @@ from PIL import Image
 #   save_dir: str, the output directory
 #
 # See [https://github.com/sylnsfar/qrcode] for more details!
-def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
+def run(words, to_base64=False, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
 
     supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
 
@@ -93,7 +94,16 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
 
         ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
 
-        if picture and picture[-4:]=='.gif':
+        if to_base64:
+            qr = Image.open(qr_name)
+            output_buffer = BytesIO()
+            qr.save(output_buffer, format='png')
+            byte_data = output_buffer.getvalue()
+            base64_str = base64.b64encode(byte_data)
+
+            return 'data:image/png;base64,' + str(base64_str, 'utf-8')
+
+        elif picture and picture[-4:]=='.gif':
             import imageio
              
             im = Image.open(picture)
