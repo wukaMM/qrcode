@@ -11,7 +11,6 @@ setup(
     description='Python qrcode',
     platforms=['any'],
     py_modules= ['qrcode'],
-    packages= ['qrcode'],
     install_requires=['imageio', 'numpy', 'olefile', 'Pillow'],
     include_package_data=True,
 )
