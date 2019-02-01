@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(
-    name='qrcode',
+    name='MyQR',
     version='1.0',
     license='MIT',
     author_email='yujia.wang@tradingfront.cn',
