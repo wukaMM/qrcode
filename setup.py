@@ -7,10 +7,11 @@ setup(
     version='1.0',
     license='MIT',
     author_email='yujia.wang@tradingfront.cn',
-    url='https://github.com/wukaMM/qrcode/MyQR',
+    url='https://github.com/wukaMM/qrcode',
     description='Python qrcode',
     platforms=['any'],
-    py_modules= ['MyQR.terminal'],
+    py_modules= ['MyQR'],
+    packages= ['MyQR'],
     install_requires=['imageio', 'numpy', 'olefile', 'Pillow'],
     include_package_data=True,
 )
