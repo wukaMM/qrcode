@@ -7,7 +7,7 @@ setup(
     version='1.0',
     license='MIT',
     author_email='yujia.wang@tradingfront.cn',
-    url='https://github.com/wukaMM/qrcode',
+    url='https://github.com/wukaMM/qrcode/MyQR',
     description='Python qrcode',
     platforms=['any'],
     py_modules= ['MyQR.terminal'],
