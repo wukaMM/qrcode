@@ -10,7 +10,7 @@ setup(
     url='https://github.com/wukaMM/qrcode',
     description='Python qrcode',
     platforms=['any'],
-    py_modules= ['MyQR'],
+    py_modules= ['MyQR.terminal'],
     install_requires=['imageio', 'numpy', 'olefile', 'Pillow'],
     include_package_data=True,
 )
