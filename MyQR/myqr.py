@@ -85,23 +85,17 @@ def run(words, to_base64=False, version=1, level='H', picture=None, colorized=Fa
         qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(bg_name))[0] + '_qrcode.png') if not save_name else os.path.join(save_dir, save_name)
         qr.resize((qr.size[0]*3, qr.size[1]*3)).save(qr_name)
         return qr_name
-
-    tempdir = os.path.join(os.path.expanduser('~'), '.myqr')
     
     try:
-        if not os.path.exists(tempdir):
-            os.makedirs(tempdir)
-
-        ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
+        ver, img_obj = theqrmodule.get_qrcode(version, level, words)
 
         if to_base64:
-            qr = Image.open(qr_name)
             output_buffer = BytesIO()
-            qr.save(output_buffer, format='png')
+            img_obj.save(output_buffer, format='jpeg')
             byte_data = output_buffer.getvalue()
             base64_str = base64.b64encode(byte_data)
 
-            return 'data:image/png;base64,' + str(base64_str, 'utf-8')
+            return 'data:image/jpeg;base64,' + str(base64_str, 'utf-8')
 
         elif picture and picture[-4:]=='.gif':
             import imageio
@@ -136,7 +130,3 @@ def run(words, to_base64=False, version=1, level='H', picture=None, colorized=Fa
         
     except:
         raise
-    finally:
-        import shutil
-        if os.path.exists(tempdir):
-            shutil.rmtree(tempdir) 

@@ -3,7 +3,7 @@
 from PIL import Image
 import os
 
-def draw_qrcode(abspath, qrmatrix):
+def draw_qrcode(qrmatrix):
     unit_len = 3
     x = y = 4*unit_len
     pic = Image.new('1', [(len(qrmatrix)+8)*unit_len]*2, 'white')
@@ -15,9 +15,7 @@ def draw_qrcode(abspath, qrmatrix):
             x += unit_len
         x, y = 4*unit_len, y+unit_len
 
-    saving = os.path.join(abspath, 'qrcode.png')
-    pic.save(saving)
-    return saving
+    return pic
     
 def draw_a_black_unit(p, x, y, ul):
     for i in range(ul):
