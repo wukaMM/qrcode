@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='MyQR',
-    version='1.0',
+    version='1.1',
     license='MIT',
     author_email='yujia.wang@tradingfront.cn',
     url='https://github.com/wukaMM/qrcode',
